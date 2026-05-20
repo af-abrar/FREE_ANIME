@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREE ANIME </title>
+    <title>FREE ANIME</title>
     <!-- Premium Fonts & Icons -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
@@ -206,7 +206,7 @@
     <!-- CINEMATIC VIDEO VIEWPORT -->
     <section class="theater-viewport">
         <div class="screen-container" id="player-screen">
-            <!-- Default Player Loaded via Javascript on Startup -->
+            <!-- Loaded via JavaScript -->
         </div>
     </section>
 
@@ -251,7 +251,7 @@
             }, 40);
         });
 
-        // --- ২. MULTI-LANGUAGE GLOBAL ANIME DATABASE ---
+        // --- ২. GLOBAL ANIME DATABASE (With Exact Slugs for Multilingual Stream) ---
         const animeDatabase = {
             series: [
                 { slug: "one-piece", name: "One Piece", img: "posters/profile.png" },
@@ -267,12 +267,12 @@
             ]
         };
 
-        
+        // --- ৩. RENDER ENGINE (কার্ড গ্রিড বিল্ডার) ---
         function renderRow(data, containerId, categoryName) {
             const container = document.getElementById(containerId);
             container.innerHTML = data.map((anime, index) => `
                 <div class="anime-card-luxury" onclick="streamCinema('${anime.slug}', '${anime.name}', '${categoryName}')">
-                    
+                    <!-- হোস্টিং সার্ভারে কোনো ছবি মিসিং হলে প্লেসহোল্ডার টেক্সট ইমেজ অটো জেনারেট হবে -->
                     <img src="${anime.img}" alt="${anime.name}" onerror="this.src='https://placeholder.com{encodeURIComponent(anime.name)}'">
                     <div class="card-caption">
                         <span class="card-num">0${index + 1}</span>
@@ -282,19 +282,22 @@
             `).join('');
         }
 
-        // --- ৪. MULTI-LANGUAGE STREAMING CONTROLLER (FIXED) ---
+        // --- ৪. PRODUCTION STREAMING CONTROLLER (Production Shield Active) ---
         function streamCinema(animeSlug, animeTitle, category) {
             const screen = document.getElementById('player-screen');
             
+            // হোস্টিংয়ে আইফ্রেম স্যান্ডবক্সিং ব্লক এড়াতে সরাসরি ভ্যালিড স্ট্রিং ইউআরএল অবজেক্ট জেনারেশন
+            const embedUrl = "https://embed.su" + animeSlug + "/1/1";
             
             screen.innerHTML = `
                 <div class="floating-meta">
                     <p>${category}</p>
                     <h1>${animeTitle}</h1>
                 </div>
-                <iframe src="https://embed.su{animeSlug}/1/1" 
+                <iframe src="${embedUrl}" 
                         style="width: 100%; height: 100%; border: none;" 
                         allowfullscreen 
+                        allow="autoplay; encrypted-media; picture-in-picture"
                         scrolling="no">
                 </iframe>
             `;
@@ -302,15 +305,15 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        
+        // ইনিশিয়াল বুটআপ লজিক
         window.addEventListener('DOMContentLoaded', () => {
             renderRow(animeDatabase.series, 'series-row', 'Most-Watched Series');
             renderRow(animeDatabase.fresh, 'fresh-row', 'Fresh Drops');
             
-
+            // প্রথমবার পেজ ওপেন হলে ডিফল্ট ওয়ান পিস লোড হবে
             streamCinema('one-piece', 'One Piece', 'FEATURED CINEMA');
             
-            
+            // লাক্সারি মাউস হোভার ট্র্যাকিং ইফেক্ট
             document.querySelectorAll('.anime-card-luxury, a').forEach(el => {
                 el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%, -50%) scale(1.6)');
                 el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%, -50%) scale(1)');
