@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE ANIME </title>
+    <!-- Premium Fonts & Icons -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        /* --- PACOME PERTANT MINIMALIST ART CORE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important; /* Premium Custom Cursor */
+        }
+        body {
+            background-color: #080808;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, .logo {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- LUXURY INTERACTIVE CURSOR --- */
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-ring {
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translate(-50%, -50%);
+        }
+
+        /* --- PREMIUM NAVIGATION --- */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* --- CINEMATIC GLOBAL THEATER VIEWPORT --- */
+        .theater-viewport {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            padding: 100px 6% 20px 6%;
+            background: linear-gradient(to bottom, #000, #080808);
+        }
+        .screen-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+        .screen-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+        .floating-meta {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            z-index: 5;
+            pointer-events: none;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        }
+        .floating-meta h1 {
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        .floating-meta p {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 5px;
+        }
+
+        /* --- ANIME SCROLLER CATALOGUE --- */
+        .catalog-wrapper {
+            padding: 40px 0;
+        }
+        .category-row {
+            margin-bottom: 50px;
+        }
+        .row-title-area {
+            padding: 0 6%;
+            margin-bottom: 25px;
+        }
+        .row-title-area span {
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.3);
+            display: block;
+        }
+        .row-title-area h2 {
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+        .horizontal-scroller {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 10px 6% 30px 6%;
+            scroll-behavior: smooth;
+        }
+        .horizontal-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Luxury Avant-Garde Card Design */
+        .anime-card-luxury {
+            min-width: 280px;
+            height: 380px;
+            position: relative;
+            background: #111;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .anime-card-luxury:hover {
+            transform: scale(1.04);
+        }
+        .anime-card-luxury img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s, transform 0.6s;
+        }
+        .anime-card-luxury:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+        .card-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent);
+        }
+        .card-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+        }
+        .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LUXURY MOUSE CURSOR -->
+    <div class="cursor-dot" id="dot"></div>
+    <div class="cursor-ring" id="ring"></div>
+
+    <!-- PREMIUM NAVIGATION -->
+    <nav class="nav-bar">
+        <a href="#" class="logo">FREE ANIME.</a>
+    </nav>
+
+    <!-- CINEMATIC VIDEO VIEWPORT -->
+    <section class="theater-viewport">
+        <div class="screen-container" id="player-screen">
+            <!-- Default Player Loaded via Javascript on Startup -->
+        </div>
+    </section>
+
+    <!-- ANIME DATA CATALOGUE -->
+    <main class="catalog-wrapper">
+
+        <!-- CATEGORY 1: MOST WATCHED SERIES -->
+        <div class="category-row">
+            <div class="row-title-area">
+                <span>DATABASE / 01</span>
+                <h2>Most-Watched Series</h2>
+            </div>
+            <div class="horizontal-scroller" id="series-row">
+                <!-- Loaded via Database Engine -->
+            </div>
+        </div>
+
+        <!-- CATEGORY 2: FRESH DROPS -->
+        <div class="category-row">
+            <div class="row-title-area">
+                <span>LIVE FEED / 02</span>
+                <h2>Fresh Drops</h2>
+            </div>
+            <div class="horizontal-scroller" id="fresh-row">
+                <!-- Loaded via Database Engine -->
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- ১. LUXURY CURSOR TRACKING SYSTEM ---
+        const dot = document.getElementById('dot');
+        const ring = document.getElementById('ring');
+
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            setTimeout(() => {
+                ring.style.left = e.clientX + 'px';
+                ring.style.top = e.clientY + 'px';
+            }, 40);
+        });
+
+        // --- ২. MULTI-LANGUAGE GLOBAL ANIME DATABASE ---
+        const animeDatabase = {
+            series: [
+                { slug: "one-piece", name: "One Piece", img: "posters/profile.png" },
+                { slug: "naruto-shippuden", name: "Naruto Shippuden", img: "posters/logo.png" },
+                { slug: "jujutsu-kaisen", name: "Jujutsu Kaisen", img: "posters/profile.png" },
+                { slug: "solo-leveling", name: "Solo Leveling", img: "posters/logo.png" },
+                { slug: "death-note", name: "Death Note", img: "posters/profile.png" }
+            ],
+            fresh: [
+                { slug: "dr-stone", name: "Dr. STONE", img: "posters/logo.png" },
+                { slug: "sousou-no-frieren", name: "Frieren", img: "posters/profile.png" },
+                { slug: "en炎-en-no-shouboutai", name: "Fire Force", img: "posters/logo.png" }
+            ]
+        };
+
+        
+        function renderRow(data, containerId, categoryName) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = data.map((anime, index) => `
+                <div class="anime-card-luxury" onclick="streamCinema('${anime.slug}', '${anime.name}', '${categoryName}')">
+                    
+                    <img src="${anime.img}" alt="${anime.name}" onerror="this.src='https://placeholder.com{encodeURIComponent(anime.name)}'">
+                    <div class="card-caption">
+                        <span class="card-num">0${index + 1}</span>
+                        <div class="card-name">${anime.name}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- ৪. MULTI-LANGUAGE STREAMING CONTROLLER (FIXED) ---
+        function streamCinema(animeSlug, animeTitle, category) {
+            const screen = document.getElementById('player-screen');
+            
+            
+            screen.innerHTML = `
+                <div class="floating-meta">
+                    <p>${category}</p>
+                    <h1>${animeTitle}</h1>
+                </div>
+                <iframe src="https://embed.su{animeSlug}/1/1" 
+                        style="width: 100%; height: 100%; border: none;" 
+                        allowfullscreen 
+                        scrolling="no">
+                </iframe>
+            `;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            renderRow(animeDatabase.series, 'series-row', 'Most-Watched Series');
+            renderRow(animeDatabase.fresh, 'fresh-row', 'Fresh Drops');
+            
+
+            streamCinema('one-piece', 'One Piece', 'FEATURED CINEMA');
+            
+            
+            document.querySelectorAll('.anime-card-luxury, a').forEach(el => {
+                el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%, -50%) scale(1.6)');
+                el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%, -50%) scale(1)');
+            });
+        });
+    </script>
+</body>
+</html>
